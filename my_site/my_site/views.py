@@ -11,11 +11,12 @@ def time(request):
 
 def future_time(request,offset):
     print('Offset=>',offset,type(offset))
+    
     try:
         offset = int(offset)
     except ValueError:
         return Http404()
-    
+    #assert False
     dt = datetime.datetime.now() + datetime.timedelta(hours=offset)
     html = 'The future time is {0}'.format(dt)
     return HttpResponse(html)
