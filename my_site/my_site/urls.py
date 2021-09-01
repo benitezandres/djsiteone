@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 # My site views
 from django.conf.urls import url
+# Import for views
 from my_site import views
 
 urlpatterns = [
@@ -24,5 +25,6 @@ urlpatterns = [
     url(r'^hello/$',views.hello),
     url(r'^time/$',views.time),
     url(r'^future/(\d{1,2})/$',views.future_time),
+    url(r'^timef/(\d{1,2})$',views.timef),
     url(r'^$',views.hello)
 ]
