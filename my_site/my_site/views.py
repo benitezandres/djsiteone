@@ -1,16 +1,28 @@
 from django import template
 from django.http import HttpResponse, Http404
 # Template 
-from django.template import Template, Context
+from django.template import Context
 from django.template.loader import get_template
+
+from django.shortcuts import render
+# Date
 import datetime 
 
 import os 
 
 def hello(request):
-    template = get_template('current_date_time.html')
-
-    return HttpResponse('Hi!')
+    now = datetime.datetime.now()
+    # Replace by render_to_response
+    #
+    # Get the template
+    #template = get_template('current_date_time.html')
+    # Set the context
+    #context = Context({'time':now})
+    
+    #html = template.render({'time':now})
+    #return HttpResponse(html)
+    #
+    return render(request,'hello.html',{'time':now})
 
 def time(request):
     now = datetime.datetime.now()
