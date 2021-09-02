@@ -22,7 +22,7 @@ def hello(request):
     #html = template.render({'time':now})
     #return HttpResponse(html)
     #
-    return render(request,'hello.html',{'time':now})
+    return render(request,'front/hello.html',{'time':now})
 
 def time(request):
     now = datetime.datetime.now()

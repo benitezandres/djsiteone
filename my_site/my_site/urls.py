@@ -18,7 +18,7 @@ from django.urls import path
 # My site views
 from django.conf.urls import url
 # Import for views
-from my_site import views
+from front import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
