@@ -7,6 +7,9 @@ Hello - Page
 {% block content %}
     <h1>Content Search Form</h1>
     <p>Form</p>
+    {% if error %}
+    <p>Please enter a valid search term!</p>
+    {% endif %}
     <form method="get" action="/search/">
         <label>Search: </label><input name="q" type="text"/>
         <br/>

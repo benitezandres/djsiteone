@@ -3,12 +3,15 @@ from django.http import HttpResponse, Http404
 # Template 
 from django.template import Context
 from django.template.loader import get_template
-
+# Render shortcut
 from django.shortcuts import render
 # Date
 import datetime 
-
+# OS
 import os 
+#Models
+from .models import Book
+
 
 # Get info about request objet 
 def get_info(request):
@@ -71,5 +74,37 @@ def search(request):
     print('Search  ==>')
     print('GET =>',request.GET)
     print('POST =>',request.POST)
-    return HttpResponse('Searching...')
-    #return render(request,'front/search_form.html')
+    error = False
+
+    if 'q' in request.GET:
+        q = request.GET['q']
+        # Check is q is empy
+        if not q:
+            error = True
+        else:
+            books = Book.objects.filter(title__icontains=q)
+            return render(request,'front/search_results.html',{
+            'books':books,
+            'q':q
+            })  
+    # Fallback options
+    return render(request,'front/search_form.html',{
+        'error':error
+    })
+
+    '''
+    try:
+        q = request.GET['q']
+        books = Book.objects.filter(title__icontains=q)
+        print('Bool q=>',bool(request.GET['q']))
+        print('Books ==>',books)
+        return render(request,'front/search_results.html',{
+            'books':books,
+            'q':q
+            }) 
+    except Exception as e:
+        print('Erro =>',e)
+        return render(request,'front/search_form.html',{
+            'error':True
+            }) 
+    '''
