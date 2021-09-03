@@ -74,14 +74,17 @@ def search(request):
     print('Search  ==>')
     print('GET =>',request.GET)
     print('POST =>',request.POST)
-    error = False
+    error = []
 
     if 'q' in request.GET:
         q = request.GET['q']
         # Check is q is empy
         if not q:
-            error = True
+            error.append('Serach term is empty')
+        elif len(q) > 5:
+            error.append('Search term too long')
         else:
+            
             books = Book.objects.filter(title__icontains=q)
             return render(request,'front/search_results.html',{
             'books':books,

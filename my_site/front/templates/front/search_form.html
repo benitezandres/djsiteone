@@ -8,7 +8,11 @@ Hello - Page
     <h1>Content Search Form</h1>
     <p>Form</p>
     {% if error %}
-    <p>Please enter a valid search term!</p>
+    <ul>
+    {% for item in error %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
     {% endif %}
     <form method="get" action="/search/">
         <label>Search: </label><input name="q" type="text"/>
