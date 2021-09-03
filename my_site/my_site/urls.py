@@ -26,5 +26,7 @@ urlpatterns = [
     url(r'^time/$',views.time),
     url(r'^future/(\d{1,2})/$',views.future_time),
     url(r'^timef/(\d{1,2})$',views.timef),
+    url(r'^search-form/$',views.search_form),
+    url(r'^search/$',views.search),
     url(r'^$',views.hello)
 ]

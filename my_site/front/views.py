@@ -10,8 +10,20 @@ import datetime
 
 import os 
 
+# Get info about request objet 
+def get_info(request):
+    print('Request path =>',request.path)
+    print('Request path =>',request.get_host())
+    print('Request path =>',request.get_full_path())
+    #print('Request Meta =>',request.META)
+    print('META')
+    meta = request.META
+    for key in meta:
+        print(key,':',meta[key])
+
 def hello(request):
     now = datetime.datetime.now()
+    get_info(request)
     # Replace by render_to_response
     #
     # Get the template
@@ -50,3 +62,14 @@ def timef(request,offset):
     date = datetime.datetime.now() + datetime.timedelta(hours=offset)
     html = '<h1>The time in the furete is {0}/{1}/{2}:{3}'.format(date.year,date.month,date.day,date.hour)
     return HttpResponse(html)
+
+def search_form(request):
+    return render(request,'front/search_form.html')
+
+
+def search(request):
+    print('Search  ==>')
+    print('GET =>',request.GET)
+    print('POST =>',request.POST)
+    return HttpResponse('Searching...')
+    #return render(request,'front/search_form.html')

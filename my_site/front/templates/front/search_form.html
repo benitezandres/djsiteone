@@ -1,0 +1,16 @@
+{% extends 'front/base.html' %}
+
+{% block title %} 
+Hello - Page 
+{% endblock title %}
+
+{% block content %}
+    <h1>Content Search Form</h1>
+    <p>Form</p>
+    <form method="get" action="/search/">
+        <label>Search: </label><input name="q" type="text"/>
+        <br/>
+        <input type="submit" value="Search"/>
+
+    </form>
+{% endblock content %}
