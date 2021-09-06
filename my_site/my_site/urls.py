@@ -19,6 +19,8 @@ from django.urls import path
 from django.conf.urls import url
 # Import for views
 from front import views
+# Settings
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,5 +32,14 @@ urlpatterns = [
     url(r'^search/$',views.search),
     url(r'^contact/$',views.contact),
     url(r'^contact/thanks/$',views.contact_thanks),
-    url(r'^$',views.hello)
+    url(r'^report/$',views.report_year),
+    url(r'^report/(\d{4})/$',views.report_year),
+    url(r'^report/(\d{4})/(\d{1,2})/$',views.report_year_month),
+    url(r'^$',views.hello),
+    
 ]
+
+# Degun info to alter URL
+if settings.DEBUG:
+    #urlpatterns+= [url(r'^debuginfo$',views.debug),]
+    pass

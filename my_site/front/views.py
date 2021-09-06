@@ -142,3 +142,15 @@ def contact(request):
 
 def contact_thanks(request):
     return HttpResponse('Thanks for your email!')
+
+# Test urls
+
+def report_year(request,year='2000'):
+    print('Year ==>',year)
+    html = 'Report year ' + year
+    return HttpResponse(html)
+
+def report_year_month(request,year='2000',month='01'):
+    print('Report year month ==>',year)
+    html = 'Year {0} month {1}'.format(year,month)
+    return HttpResponse(html)
