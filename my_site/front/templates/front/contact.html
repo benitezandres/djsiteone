@@ -8,9 +8,10 @@ Contact Form - My Site
 {% if form.errors %}
 <p>Please correct the error{{ form.errors|pluralize }} bellow</p>
 {% endif %}
-<form action="" method="POST">
-<table>
-    {{ form.as_table }}
+<form action="" method="POST" id="contact_form">
+    <!--
+    <table>
+    {# form.as_table #}
     <tr>
         <td>
             <input type="submit" value="Send"/>
@@ -18,5 +19,28 @@ Contact Form - My Site
     </tr>
 </table>
 {% csrf_token %}
+-->
+    <div class="field">
+        {{ form.subject.errors }}
+        <label>Subject: </label>
+        {{ form.subject }}
+    </div>
+    <div class="field">
+        {{ form.email.errors }}
+        <label>Your email: </label>
+        {{ form.email }}
+    </div>
+    <div class="field">
+        {{ form.message.errors }}
+        <label>Message: </label>
+        {{ form.message }}
+    </div>
+    <div class="field">
+        {% csrf_token %}
+    </div>
+    <div class="field">
+        <label></label>
+        <input type="submit" value="Send"/>
+    </div>
 </form>
 {% endblock content %}
