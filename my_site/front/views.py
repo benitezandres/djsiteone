@@ -11,8 +11,12 @@ import datetime
 import os 
 #Models
 from .models import Book
-
-
+# Forms
+from .forms import ContactForm
+# Redirect
+from django.http import HttpResponseRedirect
+# Mail
+from django.core.mail import send_mail
 # Get info about request objet 
 def get_info(request):
     print('Request path =>',request.path)
@@ -111,3 +115,17 @@ def search(request):
             'error':True
             }) 
     '''
+
+def contact(request):
+    print('Request ==>',request)
+    print('Method ==>',request.method)
+    # Check if GET or POST
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        print('Form bound ==>',form.is_bound)
+        print('Form valid ==>',form.is_valid())
+        
+        
+    else:
+        form = ContactForm()
+    return render(request,'front/contact.html',{'form':form})

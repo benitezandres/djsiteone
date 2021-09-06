@@ -1,0 +1,19 @@
+{% extends 'front/base.html' %}
+
+{% block title %}
+Contact Form - My Site
+{% endblock title %}
+{% block content %}
+<h1>Contact Form </h1>
+<form action="" method="POST">
+<table>
+    {{ form.as_table }}
+    <tr>
+        <td>
+            <input type="submit" value="Send"/>
+        </td>
+    </tr>
+</table>
+{% csrf_token %}
+</form>
+{% endblock content %}
