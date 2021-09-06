@@ -5,6 +5,9 @@ Contact Form - My Site
 {% endblock title %}
 {% block content %}
 <h1>Contact Form </h1>
+{% if form.errors %}
+<p>Please correct the error{{ form.errors|pluralize }} bellow</p>
+{% endif %}
 <form action="" method="POST">
 <table>
     {{ form.as_table }}

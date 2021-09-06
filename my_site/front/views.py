@@ -124,8 +124,21 @@ def contact(request):
         form = ContactForm(request.POST)
         print('Form bound ==>',form.is_bound)
         print('Form valid ==>',form.is_valid())
-        
+        # Validathe the data
+        if form.is_valid():
+            my_data = form.cleaned_data
+            print('Cleaned data ==>',my_data)
+            send_mail(
+                my_data['subject'],
+                my_data['message'],
+                my_data.get('email','norpely@test.com'),
+                ['site@test.com']
+                )
+            return HttpResponseRedirect('/contact/thanks/')
         
     else:
         form = ContactForm()
     return render(request,'front/contact.html',{'form':form})
+
+def contact_thanks(request):
+    return HttpResponse('Thanks for your email!')
